@@ -5,6 +5,7 @@ import * as API from './api/index';
  * COMPONENT IMPORTS
  */
 import Checkout from './components/checkout/Checkout';
+import Browse from './components/browse/Browse';
 
 function App() {
 
@@ -22,7 +23,8 @@ function App() {
     <InventoryContext.Provider value={{state, dispatch}}>
     <div className="App">
       <h1>TigerLily Bakery</h1>
-      <Checkout />
+      {state.inventories && <Checkout/>}
+      {state.inventories && <Browse/>}
     </div>
     </InventoryContext.Provider>
   );
