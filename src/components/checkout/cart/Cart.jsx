@@ -15,7 +15,7 @@ function Cart() {
         <h1>{item.name}</h1>
         <p>{item.price}</p>
         <small>{item.description}</small>
-        <button onClick={() => dispatch(removeFromCart(item.sku_id))}>Remove from cart</button>
+        <button onClick={() => dispatch(removeFromCart(index))}>Remove from cart</button>
       </React.Fragment>
     )
   })
@@ -23,7 +23,7 @@ function Cart() {
     <div>
     <h1>Cart</h1>  
     THIS ARE THE ITEMS :
-    {cartItems}
+    {state.cartItems && cartItems}
     <br/>
     END CART
     </div>

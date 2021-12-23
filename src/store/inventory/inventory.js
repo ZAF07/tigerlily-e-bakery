@@ -14,7 +14,9 @@ export const reducer = (state, action) => {
       return {...state, cartItems: [ ...state.cartItems, action.payload]}
      case "REMOVE_FROM_CART":
       // REMOVE ITEM FROM CART
-      return 
+      const currentItems = state.cartItems;
+      currentItems.splice(action.payload, 1);
+      return {...state, cartItems: currentItems}
     default:
       return state;
   }
