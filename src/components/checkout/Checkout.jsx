@@ -3,17 +3,25 @@ import { InventoryContext } from '../../store/inventory/inventory';
 
 import Cart from './cart/Cart';
 
-// DISPLAY ALL INVENTORIES HERE
+// CHECKOUT BUTTON HERE
+// NEEDS STATE TO ACCESS CART ITEMS TO SEND TO THE SERVER FOR PROCESSING CHECKOUT
 
-function Checkout() {
-
+function Checkout({isBrowsing}) {
+  const browsing = isBrowsing;
   const inventoryItems = useContext(InventoryContext);
-  console.log(inventoryItems);
+
+  const browseAgain = (
+    <React.Fragment>
+      <button onClick={() => browsing(true)}>Back to browse</button>
+    </React.Fragment>
+  )
 
   return (
     <div>
       <h1>Checkout</h1>
       <Cart/>
+      {browseAgain}
+      {}
     </div>
   )
 }

@@ -1,9 +1,3 @@
-
-const actions = {
-  getAllInventories: "GET_INVENTORIES",
-  addToCart: "ADD_TO_CART",
-}
-
  const addToCart = (items) => {
   return {
     type: 'ADD_TO_CART',

@@ -26,6 +26,7 @@ function Cart() {
     {state.cartItems && cartItems}
     <br/>
     END CART
+    <hr/>
     </div>
   )
 }

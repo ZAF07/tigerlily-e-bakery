@@ -7,9 +7,9 @@ import {addToCart} from '../../store/actions';
 
 // DISPATCH addToCart function here
 
-function Browse() {
+function Browse({isBrowsing}) {
+  const browsing = isBrowsing;
   const {state, dispatch} = useContext(InventoryContext)
-  console.log(state);
 
   const pastriesDisplay = state.inventories.map((item, index) => {
     return (
@@ -28,6 +28,7 @@ function Browse() {
   return (
     <div>
       <h1>Browse</h1>
+      <button onClick={() => browsing(false)}>Checkout</button>
       {pastriesDisplay}
     </div>
   )
