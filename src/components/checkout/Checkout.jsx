@@ -4,7 +4,6 @@ import { InventoryContext } from '../../store/inventory/inventory';
 import Cart from './cart/Cart';
 
 // DISPLAY ALL INVENTORIES HERE
-// DISPATCH addToCart function here
 
 function Checkout() {
 

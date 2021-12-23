@@ -12,6 +12,9 @@ export const reducer = (state, action) => {
       return {...state, inventories: action.payload}
     case "ADD_TO_CART":
       return {...state, cartItems: [ ...state.cartItems, action.payload]}
+     case "REMOVE_FROM_CART":
+      // REMOVE ITEM FROM CART
+      return 
     default:
       return state;
   }
