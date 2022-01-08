@@ -1,6 +1,7 @@
 import React, {useEffect, useReducer, useState} from 'react';
 import {InventoryContext, reducer, initialState} from './store/inventory/inventory'
 import * as API from './api/index';
+import axios from 'axios';
 /*
  * COMPONENT IMPORTS
  */
@@ -13,7 +14,7 @@ function App() {
 
   useEffect(() => {
   
-      API.getAllInventories(dispatch, 0,0);
+      API.getAllInventories(dispatch, '0','0');
     
   }, [])
 

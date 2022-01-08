@@ -1,8 +1,10 @@
 import axios from 'axios';
 
-const baseURL = 'http://localhost:8000';
+// API Gateway host 
+const baseURL = 'http://localhost:8080';
 
 export const getAllInventories = (dispatch, limit, offset) => {
+  console.log(typeof limit);
   const url = `${baseURL}/inventory?${limit}=0&offset=${offset}`;
   axios.get(url)
     .then(res => {
@@ -11,4 +13,12 @@ export const getAllInventories = (dispatch, limit, offset) => {
       const payload = data.data.inventories
       dispatch({type: "GET_INVENTORIES", payload})
     })
+}
+
+export const checkout = () => {
+  const checkoutURL = `${baseURL}/checkout`;
+  axios.post(checkoutURL)
+  .then(res => {
+    console.log(res);
+  })
 }

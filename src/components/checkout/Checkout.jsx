@@ -1,5 +1,6 @@
 import React, {useContext} from 'react';
 import { InventoryContext } from '../../store/inventory/inventory';
+import { checkout } from '../../api';
 
 import Cart from './cart/Cart';
 
@@ -21,7 +22,7 @@ function Checkout({isBrowsing}) {
       <h1>Checkout</h1>
       <Cart/>
       {browseAgain}
-      {}
+      <button onClick={() => checkout()}>Checkout</button>
     </div>
   )
 }
