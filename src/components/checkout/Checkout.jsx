@@ -8,8 +8,9 @@ import Cart from './cart/Cart';
 // NEEDS STATE TO ACCESS CART ITEMS TO SEND TO THE SERVER FOR PROCESSING CHECKOUT
 
 function Checkout({isBrowsing}) {
-  const browsing = isBrowsing;
-  const inventoryItems = useContext(InventoryContext);
+  const browsing = isBrowsing
+  const {state, dispatch} = useContext(InventoryContext);;
+  // const inventoryItems = useContext(InventoryContext);
 
   const browseAgain = (
     <React.Fragment>
@@ -22,7 +23,7 @@ function Checkout({isBrowsing}) {
       <h1>Checkout</h1>
       <Cart/>
       {browseAgain}
-      <button onClick={() => checkout()}>Checkout</button>
+      <button onClick={() => checkout(state.cartItems)}>Checkout</button>
     </div>
   )
 }
