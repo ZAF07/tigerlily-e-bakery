@@ -1,7 +1,8 @@
 import axios from 'axios';
-
+import GLOBALS from '../utils/index.js';
 // API Gateway host 
-const baseURL = 'http://localhost:8080';
+// const baseURL = 'http://localhost:8080';
+const baseURL = GLOBALS.urls.base;
 
 export const getAllInventories = (dispatch, limit, offset) => {
   console.log(typeof limit);
