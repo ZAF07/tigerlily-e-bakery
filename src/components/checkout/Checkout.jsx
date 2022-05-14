@@ -12,7 +12,7 @@ function Checkout({isBrowsing}) {
   const {state, dispatch} = useContext(InventoryContext);;
   // const inventoryItems = useContext(InventoryContext);
 
-  const browseAgain = (
+  const backToBrowse = (
     <React.Fragment>
       <button onClick={() => browsing(true)}>Back to browse</button>
     </React.Fragment>
@@ -22,8 +22,9 @@ function Checkout({isBrowsing}) {
     <div>
       <h1>Checkout</h1>
       <Cart/>
-      {browseAgain}
-      <button onClick={() => checkout(state.cartItems)}>Checkout</button>
+      {backToBrowse}
+      {/* Checkout API should be called in the dispatch. Dispatch should remove all items from cart first then calls Checkout API */}
+      <button onClick={() => checkout(state.cartItems)}>Checkout</button> 
     </div>
   )
 }

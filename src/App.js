@@ -13,7 +13,6 @@ function App() {
   const [state, dispatch] = useReducer(reducer, initialState)
 
   useEffect(() => {
-  
       API.getAllInventories(dispatch, '0','0');
     
   }, [])

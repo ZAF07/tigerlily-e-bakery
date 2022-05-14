@@ -15,6 +15,7 @@ function Cart() {
         <h1>{item.name}</h1>
         <p>{item.price}</p>
         <small>{item.description}</small>
+        <br/>
         <button onClick={() => dispatch(removeFromCart(index))}>Remove from cart</button>
       </React.Fragment>
     )
@@ -22,6 +23,8 @@ function Cart() {
   return (
     <div>
     <h1>Cart</h1>  
+    START CART
+    <br/>
     THIS ARE THE ITEMS :
     {state.cartItems && cartItems}
     <br/>
