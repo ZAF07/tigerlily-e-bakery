@@ -13,6 +13,17 @@ function App() {
   const [state, dispatch] = useReducer(reducer, initialState)
 
   useEffect(() => {
+    const query = new URLSearchParams(window.location.search);
+
+    if (query.get("success")) {
+      alert("Order placed! You will receive an email confirmation.");
+    }
+
+    if (query.get("canceled")) {
+      alert(
+        "Order canceled -- continue to shop around and checkout when you're ready."
+      );
+    }
       API.getAllInventories(dispatch, '0','0');
     
   }, [])
