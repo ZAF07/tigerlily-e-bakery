@@ -25,7 +25,8 @@ export const checkout = (a) => {
     customer_id: "9388",
     discount_code: "00112233"
   }]
-  axios.post(checkoutURL, {checkout_items: mockData}, {
+  const paymentType = 'stripe_checkout_session'
+  axios.post(checkoutURL, {checkout_items: mockData, payment_type: paymentType}, {
     headers: {
       'content-type': 'text/json'
     }
