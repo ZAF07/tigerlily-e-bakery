@@ -18,6 +18,12 @@ function Checkout({isBrowsing}) {
     </React.Fragment>
   )
 
+  // Handler to send a message to the websocket server
+  // This should be on each time a user checks out an item
+  const handleSend = () => {
+  state.wsInstance.send('hello from the client !!!!!!!!!!!!!!!!!!!')
+  }
+
   return (
     <div>
       <h1>Checkout</h1>
@@ -25,6 +31,8 @@ function Checkout({isBrowsing}) {
       {backToBrowse}
       {/* Checkout API should be called in the dispatch. Dispatch should remove all items from cart first then calls Checkout API */}
       <button onClick={() => checkout(state.cartItems)}>Checkout</button> 
+
+    <button onClick={handleSend}>SEND WEBSOCKET</button>
     </div>
   )
 }

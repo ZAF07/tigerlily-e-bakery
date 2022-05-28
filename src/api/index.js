@@ -35,3 +35,17 @@ export const checkout = (a) => {
     console.log(res);
   })
 }
+
+export const syncAllInventories = (dispatch) => {
+   const conn = new WebSocket("ws://localhost:8080/ws?token=1234&name=zaffere");
+    
+    dispatch({type: "SET_WEBSOCKET_INSTANCE", payload: conn})
+    conn.onopen = (evt) => {
+    console.log("Open !!!!!!!!!!!!!!11");
+  }
+  
+  conn.onmessage = (e) => {
+    console.log('MESSAGE RECEIVED : ', e)
+    // dispatch action to store to sync inventories count
+  }
+}

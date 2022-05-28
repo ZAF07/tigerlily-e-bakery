@@ -1,10 +1,7 @@
 import React, {useEffect, useReducer, useState} from 'react';
 import {InventoryContext, reducer, initialState} from './store/inventory/inventory'
 import * as API from './api/index';
-import axios from 'axios';
-/*
- * COMPONENT IMPORTS
- */
+
 import Checkout from './components/checkout/Checkout';
 import Browse from './components/browse/Browse';
 
@@ -24,8 +21,10 @@ function App() {
         "Order canceled -- continue to shop around and checkout when you're ready."
       );
     }
-      API.getAllInventories(dispatch, '0','0');
-    
+
+    // Websocket implementation to get realtime inventories
+    API.syncAllInventories(dispatch)
+    // API.getAllInventories(dispatch, '0','0');
   }, [])
 
   return (
