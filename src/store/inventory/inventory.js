@@ -40,9 +40,10 @@ export const reducer = (state, action) => {
         newState.push(obj)
       })
       const latestState = {...state, inventories: newState}
-      const a = JSON.stringify({"pressure": latestState.value})
+      const a = JSON.stringify({"inventories": latestState.inventories})
       console.log('oahsoabso -----> ', a);
       state.wsInstance.send(JSON.stringify({"inventories": latestState.inventories}))
+      // state.wsInstance.send(JSON.stringify(string))
       // return {...state, inventories: newState}
       return latestState
     case 'REAL_TIME_UPDATE':

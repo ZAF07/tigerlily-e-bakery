@@ -49,10 +49,6 @@ export const syncAllInventories = (dispatch) => {
     console.log('MESSAGE RECEIVED : ', JSON.stringify(e.data))
     const payload = JSON.parse(e.data).inventories
     console.log('THIS PSYLAO : ', payload);
-    // const inventories = JSON.parse(e.data)
-    // console.log("THIS --> ", inventories.inventories);
-    // const payload = inventories.inventories
-    // const payload = e
     dispatch({type: "REAL_TIME_UPDATE", payload})
     // dispatch action to store to sync inventories count
   }

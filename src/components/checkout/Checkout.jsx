@@ -22,10 +22,7 @@ function Checkout({isBrowsing}) {
   // Handler to send a message to the websocket server
   // This should be on each time a user checks out an item
   const handleSend = () => {
-  // state.wsInstance.send('GET')
-  // dispatch({type: "DEDUCT_ITEM_QUANTITY", payload: 'Lemon Tart'})
-  // console.log('WHAT THE WAHT --> ', state);
-  dispatch(deductFromQuantity('Lemon Cake'))
+    dispatch(deductFromQuantity(state))
   }
 
   return (
