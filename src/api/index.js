@@ -37,7 +37,7 @@ export const checkout = (a) => {
 }
 
 export const syncAllInventories = (dispatch) => {
-   const conn = new WebSocket("ws://localhost:8080/ws?token=1234&name=zaffere");
+   const conn = new WebSocket("ws://localhost:8080/inventory/ws?token=1234&name=zaffere");
     
     dispatch({type: "SET_WEBSOCKET_INSTANCE", payload: conn})
     conn.onopen = (evt) => {
@@ -45,7 +45,15 @@ export const syncAllInventories = (dispatch) => {
   }
   
   conn.onmessage = (e) => {
-    console.log('MESSAGE RECEIVED : ', e)
+    console.log('@@@@@@@@@@@@@@@@@@@@@@@@ --> ', e);
+    console.log('MESSAGE RECEIVED : ', JSON.stringify(e.data))
+    const payload = JSON.parse(e.data).inventories
+    console.log('THIS PSYLAO : ', payload);
+    // const inventories = JSON.parse(e.data)
+    // console.log("THIS --> ", inventories.inventories);
+    // const payload = inventories.inventories
+    // const payload = e
+    dispatch({type: "REAL_TIME_UPDATE", payload})
     // dispatch action to store to sync inventories count
   }
 }

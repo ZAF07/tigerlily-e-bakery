@@ -12,7 +12,15 @@ const removeFromCart = (skuID) => {
   }
 }
 
+const deductFromQuantity = (name) => {
+  return {
+    type: 'DEDUCT_ITEM_QUANTITY',
+    payload: name
+  }
+}
+
 export {
   addToCart,
-  removeFromCart
+  removeFromCart,
+  deductFromQuantity
 }

@@ -10,6 +10,7 @@ function App() {
   const [state, dispatch] = useReducer(reducer, initialState)
 
   useEffect(() => {
+    console.log("RENDER")
     const query = new URLSearchParams(window.location.search);
 
     if (query.get("success")) {
@@ -24,7 +25,7 @@ function App() {
 
     // Websocket implementation to get realtime inventories
     API.syncAllInventories(dispatch)
-    // API.getAllInventories(dispatch, '0','0');
+    API.getAllInventories(dispatch, '0','0');
   }, [])
 
   return (
