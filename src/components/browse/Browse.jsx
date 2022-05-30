@@ -16,7 +16,7 @@ import { InventoryContext } from '../../store/inventory/inventory';
 import {addToCart} from '../../store/actions';
 
 // DISPATCH addToCart function here
-//effy sucks
+//effy sucks yes
 function Browse({isBrowsing}) {
   const browsing = isBrowsing;
   const {state, dispatch} = useContext(InventoryContext)
