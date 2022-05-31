@@ -22,6 +22,10 @@ export const reducer = (state, action) => {
       return {...state, wsInstance: action.payload}
     case "DEDUCT_ITEM_QUANTITY":
       // GET ITEM NAME IN CART
+      if (state.cartItems.length < 1) {
+        return {...state}
+      }
+
       const inCart = {};
       state.cartItems.forEach(obj => {
         if (inCart[obj.name]) {
@@ -30,7 +34,7 @@ export const reducer = (state, action) => {
           inCart[obj.name] = 1
         }
       })      
-      console.log('ITEMS IN CART ==> ', inCart);
+
       const newState = []
       state.inventories.forEach(obj => {
         const toUpdate = obj.name in inCart
@@ -39,18 +43,16 @@ export const reducer = (state, action) => {
         }
         newState.push(obj)
       })
+
       const latestState = {...state, inventories: newState}
-      const a = JSON.stringify({"inventories": latestState.inventories})
-      console.log('oahsoabso -----> ', a);
+      // TECH DEBT: May have to pass actual JSON instead. JSON.stringify() will not reflect nil values for objects !!!
       state.wsInstance.send(JSON.stringify({"inventories": latestState.inventories}))
-      // state.wsInstance.send(JSON.stringify(string))
-      // return {...state, inventories: newState}
       return latestState
     case 'REAL_TIME_UPDATE':
       console.log('GOTTEN ===> ', action.payload);
       return {...state, inventories: action.payload}
     default:
-      return state;
+      return {...state};
   }
 }
 
