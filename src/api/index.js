@@ -1,19 +1,24 @@
 import axios from 'axios';
-import GLOBALS from '../utils/index.js';
-// API Gateway host 
-// const baseURL = 'http://localhost:8080';
-const baseURL = GLOBALS.urls.base;
+import InitAPIClient from './client/index';
+import RetryManager from '../api/retryManager/index';
 
-export const getAllInventories = (dispatch, limit, offset) => {
-  console.log(typeof limit);
-  const url = `${baseURL}/inventory?limit=${limit}&offset=${offset}`;
-  axios.get(url)
-    .then(res => {
-      const {data} = res;
-      console.log(data.data.inventories);
-      const payload = data.data.inventories
-      dispatch({type: "GET_INVENTORIES", payload})
-    })
+const baseURL = 'http://localhost:8080';
+
+const ApiClient = InitAPIClient();
+
+/*
+  TODO: SAME THING HERE. PLAN DESIGN PATTERN BEFORE CONTINUING CODE. VERY MESSY STRUCTURE
+*/
+export const getAllInventories = async (dispatch, limit, offset) => {
+  const query = `limit=${limit}&offset=${offset}`;
+  const resp = await ApiClient.GetAllInventories(query, 3, 1)
+  console.log('DONE IN API AGGREFGATOR: ', resp);
+  if (resp.status === 'retry') {
+    const retryResp = await RetryManager(500,3,ApiClient.GetAllInventories, query)
+    retryResp.status === 'ok' ? dispatch({type: 'GET_INVENTORIES', payload: retryResp.payload}) :  dispatch({type: 'GET_INVENTORIES', payload: []})
+    return
+  }
+  dispatch({type: "GET_INVENTORIES", payload: resp.payload})
 }
 
 export const checkout = (a) => {

@@ -1,7 +1,6 @@
-import { urls } from './enums.js';
-
+const NETWORK_RETRIES = 3;
 const appUtils = {
-  urls
+  networkRetries: NETWORK_RETRIES
 }
 
 export default appUtils;
