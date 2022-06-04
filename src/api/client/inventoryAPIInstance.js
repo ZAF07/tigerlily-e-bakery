@@ -4,7 +4,7 @@ import RequestInterceptor from '../intercepters/interceptors';
 
 const { request } = RequestInterceptor;  
 
-const InventoryAPIClient = axios.create({
+const InventoryAPIInstance = axios.create({
   baseURL: appConfig.apiURLs.base,
   timeout: 10000,
   headers: {
@@ -22,12 +22,12 @@ const InventoryAPIClient = axios.create({
   },
   withCredentials: false,
   validateStatus: (status) => {
-    return status <= 500
+    return status < 500
   }
 })
 
-InventoryAPIClient.interceptors.request.use(request)
+InventoryAPIInstance.interceptors.request.use(request)
 
 export {
-  InventoryAPIClient,
+  InventoryAPIInstance,
 }
