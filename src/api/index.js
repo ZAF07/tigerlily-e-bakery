@@ -1,5 +1,4 @@
 import axios from 'axios';
-import Constants from '../utils/constants';
 import InitAPIClient from './client/index';
 import APIHelper from '../utils/helpers/APIHelpers';
 import AppErrors from '../utils/errors';
