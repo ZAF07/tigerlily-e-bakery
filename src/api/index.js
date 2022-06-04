@@ -1,35 +1,21 @@
 import axios from 'axios';
 import InitAPIClient from './client/index';
-import APIHelper from '../utils/helpers/APIHelpers';
-import AppErrors from '../utils/errors';
+import Helpers from '../utils/helpers';
+import ErrorHandlers from '../utils/errors/errorHandlers';
 
 const baseURL = 'http://localhost:8080';
 
 const ApiClient = InitAPIClient();
 
 export const getAllInventories = async (dispatch, limit, offset) => {
-  const query = APIHelper.BuildLimitAndOffsetString(limit, offset)
+  const query = Helpers.APIHelper.BuildLimitAndOffsetString(limit, offset)
   try {
-    const resp = await ApiClient.GetAllInventories(query, 3, 1)
-    console.log('DONE IN API AGGREGATOR: ', resp);
+    const resp = await ApiClient.GetAllInventories(query, {maxRetries: 3, timeToWait: 500})
+    console.debug('DONE IN API AGGREGATOR: ', resp);
     dispatch({type: "GET_INVENTORIES", payload: resp.payload})
   } catch (error) {
-
-    /*
-      TODO: 
-      ABSTARCT ERROR HANDLING LOGIC AWAY FROM HERE. THIS SHOULD BE AGNOSTIC
-    */
-
-    // Here, based on the error, i send a retry, or alert the user that there was something wrong or that they entered a wrong value, please re-enter a valid value
-    console.debug('CATCHING ERRPR ==> ', error); 
-    // Construction the arguments for RetryManager to know which handler to call
-    const errorHandlerArgs = {
-      apiClient: ApiClient.GetAllInventories,
-      query
-    };
-    const retryResp = await AppErrors.ErrorHandlers(error, errorHandlerArgs)
-    console.debug('AFTER RETRY IN APP FACING API STUB: ', retryResp)
-    retryResp.status === 'ok' ? dispatch({type: 'GET_INVENTORIES', payload: retryResp.payload}) :  dispatch({type: 'GET_INVENTORIES', payload: []})
+    console.debug('CATCHING ERRPR IN CLIENT FACING  ==> ', error); 
+    ErrorHandlers(error)
   }
 }
 

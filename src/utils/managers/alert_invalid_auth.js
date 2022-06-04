@@ -1,5 +1,5 @@
 const AlertInvalidAuthToken = (message) => {
-  alert(`${message}`)
+  alert(`HI ${message}`)
 }
 
 export default AlertInvalidAuthToken;

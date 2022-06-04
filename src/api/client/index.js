@@ -1,23 +1,35 @@
 import { InventoryAPIInstance } from './inventoryAPIInstance';
+import Helpers from '../../utils/helpers';
 
 
 const InitAPIClient = () => {
 
-  const GetAllInventories = async (query, maxRetries, timeToWait) => {
-    try {
+  const GetAllInventories = async (query, {maxRetries, timeToWait}) => {
+    let retries = 0;
+    let errMsg;
+    while (retries < maxRetries) {
+      await Helpers.Sleep(timeToWait)
+      try 
+      {
         const resp = await InventoryAPIInstance.get(`/inventory?${query}`, {})
         const { data } = resp;
         const payload = data.data.inventories;
         return { status: 'ok', payload }
-    } catch (error) {
+      } 
+      catch (error) {
         console.log('CATCH ERR !!!!!!!!! : ', error.message);
-        throw new Error(error.message)
+        errMsg = error.message
+      } 
+      finally {
+        retries += 1
+      }
     }
-    };
+    throw new Error(errMsg)
+  };
 
-    return {
-      GetAllInventories,
-    }
+  return {  
+    GetAllInventories,
+  }
 }
 
 export default InitAPIClient;
