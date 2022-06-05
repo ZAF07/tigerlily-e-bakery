@@ -7,8 +7,12 @@ const InitAPIClient = () => {
   const GetAllInventories = async (query, {maxRetries, timeToWait}) => {
     let retries = 0;
     let errMsg;
-    while (retries < maxRetries) {
-      await Helpers.Sleep(timeToWait)
+    while (retries < maxRetries + 1) {
+
+      if (retries >= 1) {
+        await Helpers.Sleep(timeToWait)
+      }
+
       try 
       {
         const resp = await InventoryAPIInstance.get(`/inventory?${query}`, {})
