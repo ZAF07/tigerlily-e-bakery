@@ -22,7 +22,7 @@ function App() {
     }
 
     // Websocket implementation to get realtime inventories
-    // API.syncAllInventories(dispatch)
+    API.syncAllInventories(dispatch)
     API.getAllInventories(dispatch, '0','0');
   }, [])
 

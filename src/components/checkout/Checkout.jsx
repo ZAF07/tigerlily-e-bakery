@@ -23,6 +23,7 @@ function Checkout({isBrowsing}) {
   // This should be on each time a user checks out an item
   const handleSend = () => {
     dispatch(deductFromQuantity(state))
+    checkout(state.cartItems)
   }
 
   return (

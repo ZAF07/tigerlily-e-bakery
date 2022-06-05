@@ -20,7 +20,7 @@ export const getAllInventories = async (dispatch, limit, offset) => {
 }
 
 export const checkout = (a) => {
-  console.log('FROM CART : ', a);
+  console.debug('FROM CART IN CHECKOUT -->  : ', a);
   const checkoutURL = `${baseURL}/checkout`;
   const mockData = [{
     order_id: "071292",
@@ -29,13 +29,14 @@ export const checkout = (a) => {
     discount_code: "00112233"
   }]
   const paymentType = 'test_strategy'
+  // const paymentType = 'stripe_checkout_session'
   axios.post(checkoutURL, {checkout_items: mockData, payment_type: paymentType}, {
     headers: {
       'content-type': 'text/json'
     }
   })
   .then(res => {
-    console.log(res);
+    console.debug('RESPONSE FROM CALING CHECKOT SERVICE --> ', res);
   })
 }
 
@@ -49,9 +50,9 @@ export const syncAllInventories = (dispatch) => {
   
   conn.onmessage = (e) => {
     console.log('@@@@@@@@@@@@@@@@@@@@@@@@ --> ', e);
-    console.log('MESSAGE RECEIVED : ', JSON.stringify(e.data))
+    console.debug('MESSAGE RECEIVED : ', JSON.stringify(e.data))
     const payload = JSON.parse(e.data).inventories
-    console.log('THIS PSYLAO : ', payload);
+    console.debug('THIS PAYLAOD RECEIVED FROM WEBSOCKET CONNECTION : ', payload);
     dispatch({type: "REAL_TIME_UPDATE", payload})
     // dispatch action to store to sync inventories count
   }
