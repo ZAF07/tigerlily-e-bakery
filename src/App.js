@@ -14,6 +14,10 @@ function App() {
 
   useEffect(() => {
     console.debug("RENDER")
+    /*
+      ❌ TODO:
+        Move this guys to a separate function. These guys are to handle stripe webhook
+    */
     const query = new URLSearchParams(window.location.search);
     if (query.get("success")) {
       alert("Order placed! You will receive an email confirmation.");
@@ -24,9 +28,6 @@ function App() {
       );
     }
 
-    // Websocket implementation to get realtime inventories
-    // API.syncAllInventories(dispatch)
-    // API.getAllInventories(dispatch, '0','0');
     InventoryAPIClient.ConnectWSInventories(dispatch);
     InventoryAPIClient.GetAllInventories(dispatch, '0', '0');
   }, [])

@@ -38,6 +38,10 @@ const InitInventoryAPIClient = () => {
     ErrorHandlers(errMsg)
   };
 
+  /*
+    ❌ TODO: 
+      Set up error handling for cases when WS Client cannot establish a connection
+  */ 
   const ConnectWSInventories = (dispatch) => {
     const conn = new WebSocket(Constants.WS_PATH);
     dispatch({type: 'SET_WEBSOCKET_INSTANCE', payload: conn})
