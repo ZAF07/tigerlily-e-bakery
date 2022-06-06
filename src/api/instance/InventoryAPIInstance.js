@@ -28,6 +28,4 @@ const InventoryAPIInstance = axios.create({
 
 InventoryAPIInstance.interceptors.request.use(request)
 
-export {
-  InventoryAPIInstance,
-}
+export default InventoryAPIInstance;

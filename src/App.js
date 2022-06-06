@@ -1,9 +1,12 @@
 import React, {useEffect, useReducer, useState} from 'react';
 import {InventoryContext, reducer, initialState} from './store/inventory/inventory'
 import * as API from './api/index';
+import InitAPIClient from './api/client/index';
 
 import Checkout from './components/checkout/Checkout';
 import Browse from './components/browse/Browse';
+
+const { InventoryAPIClient } = InitAPIClient()
 
 function App() {
   const [browsing, setBrowsing] = useState(true)
@@ -23,7 +26,8 @@ function App() {
 
     // Websocket implementation to get realtime inventories
     API.syncAllInventories(dispatch)
-    API.getAllInventories(dispatch, '0','0');
+    // API.getAllInventories(dispatch, '0','0');
+    InventoryAPIClient.GetAllInventories(dispatch, '0', '0')
   }, [])
 
   const CheckoutPage = state.inventories && !browsing && <Checkout isBrowsing={setBrowsing}/>

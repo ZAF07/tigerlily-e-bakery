@@ -48,7 +48,7 @@ export const reducer = (state, action) => {
       // TECH DEBT: May have to pass actual JSON instead. JSON.stringify() will not reflect nil values for objects !!!
       state.wsInstance.send(JSON.stringify({"inventories": latestState.inventories}))
       return latestState
-    case 'REAL_TIME_UPDATE':
+    case 'REAL_TIME_INVENTORY_UPDATE':
       console.log('GOTTEN IN DEDUCT_ITEM_QUANTITY REDUCER ===> ', action.payload);
       return {...state, inventories: action.payload}
     default:

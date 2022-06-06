@@ -5,12 +5,12 @@ import ErrorHandlers from '../utils/errors/errorHandlers';
 
 const baseURL = 'http://localhost:8080';
 
-const ApiClient = InitAPIClient();
+const { InventoryAPIClient } = InitAPIClient();
 
 export const getAllInventories = async (dispatch, limit, offset) => {
   const query = Helpers.APIHelper.BuildLimitAndOffsetString(limit, offset)
   try {
-    const resp = await ApiClient.GetAllInventories(query, {maxRetries: 3, timeToWait: 500})
+    const resp = await InventoryAPIClient.GetAllInventories(query, {maxRetries: 3, timeToWait: 500})
     console.debug('DONE IN API AGGREGATOR: ', resp);
     dispatch({type: "GET_INVENTORIES", payload: resp.payload})
   } catch (error) {
@@ -37,7 +37,7 @@ export const checkout = (a) => {
   })
   .then(res => {
     console.debug('RESPONSE FROM CALING CHECKOT SERVICE --> ', res);
-    alert('POPUP: Checkotut Successful 😃')
+    alert('POPUP: Checkout Successful 😃')
   })
 }
 
@@ -54,7 +54,7 @@ export const syncAllInventories = (dispatch) => {
     console.debug('MESSAGE RECEIVED : ', JSON.stringify(e.data))
     const payload = JSON.parse(e.data).inventories
     console.debug('THIS PAYLAOD RECEIVED FROM WEBSOCKET CONNECTION : ', payload);
-    dispatch({type: "REAL_TIME_UPDATE", payload})
+    dispatch({type: "REAL_TIME_INVENTORY_UPDATE", payload})
     // dispatch action to store to sync inventories count
   }
 }

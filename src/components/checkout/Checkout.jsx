@@ -1,9 +1,11 @@
 import React, {useContext} from 'react';
 import { InventoryContext } from '../../store/inventory/inventory';
 import { deductFromQuantity } from '../../store/actions'
-import { checkout } from '../../api';
+import InitAPIClient from '../../api/client';
 
 import Cart from './cart/Cart';
+
+const { PaymentAPIClient } = InitAPIClient();
 
 // CHECKOUT BUTTON HERE
 // NEEDS STATE TO ACCESS CART ITEMS TO SEND TO THE SERVER FOR PROCESSING CHECKOUT
@@ -23,7 +25,8 @@ function Checkout({isBrowsing}) {
   // This should be on each time a user checks out an item
   const handleSend = () => {
     dispatch(deductFromQuantity(state))
-    checkout(state.cartItems)
+    // checkout(state.cartItems)
+    PaymentAPIClient.checkout(state.cartItems)
   }
 
   return (
