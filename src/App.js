@@ -1,6 +1,5 @@
 import React, {useEffect, useReducer, useState} from 'react';
 import {InventoryContext, reducer, initialState} from './store/inventory/inventory'
-import * as API from './api/index';
 import InitAPIClient from './api/client';
 
 import Checkout from './components/checkout/Checkout';
