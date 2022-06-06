@@ -1,5 +1,4 @@
 import PaymentAPIInstance from "../../instance/PaymentAPIInstance";
-import appConfig from '../../../config';
 import ErrorHandlers from '../../../utils/errors/errorHandlers';
 import Constants from "../../../utils/constants";
 

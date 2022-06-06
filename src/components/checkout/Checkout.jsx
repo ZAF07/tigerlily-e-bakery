@@ -1,7 +1,7 @@
 import React, {useContext} from 'react';
 import { InventoryContext } from '../../store/inventory/inventory';
 import { deductFromQuantity } from '../../store/actions'
-import InitAPIClient from '../../api/client';
+import InitAPIClient from '../../api';
 
 import Cart from './cart/Cart';
 

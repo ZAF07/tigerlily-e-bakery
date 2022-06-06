@@ -1,5 +1,3 @@
-import Constants from "../../utils/constants";
-
 /*
   TODO: 
   1) SET UP AUTH IN THE BACKEND.  
@@ -23,7 +21,7 @@ const requestValidation = (request) => {
   // 💡 IDEA !! Could intercept request to determine if  WS or HTTP
   // const upgradeProtocol = request.headers.Upgrade_Protocol;
   // if (upgradeProtocol) request.baseURL = Constants.WS_PATH;
-  
+
   console.log('✅ REQUEST ACCEPTED -> ', request);
   return request
 }
