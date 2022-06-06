@@ -5,6 +5,12 @@ import Constants from "../../../utils/constants";
 
 const PaymentAPIClient = () => {
 
+  /*
+    ❌ TODO:
+    Create idempotent requset here.
+    To create and pass a request ID along with the payload
+    Also set amount of times to retry if failure to checkout persists
+  */
   const checkout = async (a) => {
   const mockData = [{
     order_id: "071292",
