@@ -1,5 +1,5 @@
-import InitInventoryAPIClient from './inventoryAPIClient';
-import PaymentAPIClient from './paymentAPIClient';
+import InitInventoryAPIClient from './inventory/inventoryAPIClient';
+import PaymentAPIClient from './payment/paymentAPIClient'
 
 const InitAPIClient = () => {
   

@@ -1,7 +1,7 @@
-import PaymentAPIInstance from "../instance/PaymentAPIInstance";
-import appConfig from '../../config';
-import Helpers from '../../utils/helpers';
-import ErrorHandlers from '../../utils/errors/errorHandlers';
+import PaymentAPIInstance from "../../instance/PaymentAPIInstance";
+import appConfig from '../../../config';
+import ErrorHandlers from '../../../utils/errors/errorHandlers';
+import Constants from "../../../utils/constants";
 
 
 const PaymentAPIClient = () => {
@@ -20,7 +20,7 @@ const PaymentAPIClient = () => {
       let errMsg;
       try 
       {
-        const resp = await PaymentAPIInstance.post(`/checkout`, {
+        const resp = await PaymentAPIInstance.post(Constants.CHECKOUT_PATH, {
           checkout_items: mockData,
           payment_type: paymentType,
           Headers: {

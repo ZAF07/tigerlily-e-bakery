@@ -9,7 +9,8 @@ const InventoryAPIInstance = axios.create({
   timeout: 10000,
   headers: {
     'Accept': 'application/json',
-    'Authorization': 'token 1234'
+    'Authorization': 'token 1234',
+    // 'Upgrade_Protocol': false,
   },
    proxy: {
     protocol: 'http',

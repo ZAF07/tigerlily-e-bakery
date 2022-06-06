@@ -1,7 +1,7 @@
 import React, {useEffect, useReducer, useState} from 'react';
 import {InventoryContext, reducer, initialState} from './store/inventory/inventory'
 import * as API from './api/index';
-import InitAPIClient from './api/client/index';
+import InitAPIClient from './api/client';
 
 import Checkout from './components/checkout/Checkout';
 import Browse from './components/browse/Browse';
@@ -13,7 +13,7 @@ function App() {
   const [state, dispatch] = useReducer(reducer, initialState)
 
   useEffect(() => {
-    console.log("RENDER")
+    console.debug("RENDER")
     const query = new URLSearchParams(window.location.search);
     if (query.get("success")) {
       alert("Order placed! You will receive an email confirmation.");
@@ -25,9 +25,10 @@ function App() {
     }
 
     // Websocket implementation to get realtime inventories
-    API.syncAllInventories(dispatch)
+    // API.syncAllInventories(dispatch)
     // API.getAllInventories(dispatch, '0','0');
-    InventoryAPIClient.GetAllInventories(dispatch, '0', '0')
+    InventoryAPIClient.ConnectWSInventories(dispatch);
+    InventoryAPIClient.GetAllInventories(dispatch, '0', '0');
   }, [])
 
   const CheckoutPage = state.inventories && !browsing && <Checkout isBrowsing={setBrowsing}/>
