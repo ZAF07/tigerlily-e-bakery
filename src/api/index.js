@@ -37,6 +37,7 @@ export const checkout = (a) => {
   })
   .then(res => {
     console.debug('RESPONSE FROM CALING CHECKOT SERVICE --> ', res);
+    alert('POPUP: Checkotut Successful 😃')
   })
 }
 
