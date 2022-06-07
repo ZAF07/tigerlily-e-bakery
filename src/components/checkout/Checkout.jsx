@@ -1,10 +1,11 @@
 import React, {useContext} from 'react';
 import { InventoryContext } from '../../store/inventory/inventory';
-import { deductFromQuantity } from '../../store/actions'
 import InitAPIClient from '../../api';
+import Actions from '../../store/actions'
 
 import Cart from './cart/Cart';
 
+const action = Actions();
 const { PaymentAPIClient } = InitAPIClient();
 
 // CHECKOUT BUTTON HERE
@@ -12,8 +13,7 @@ const { PaymentAPIClient } = InitAPIClient();
 
 function Checkout({isBrowsing}) {
   const browsing = isBrowsing
-  const {state, dispatch} = useContext(InventoryContext);;
-  // const inventoryItems = useContext(InventoryContext);
+  const {state, dispatch} = useContext(InventoryContext);
 
   const backToBrowse = (
     <React.Fragment>
@@ -23,10 +23,16 @@ function Checkout({isBrowsing}) {
 
   // Handler to send a message to the websocket server
   // This should be on each time a user checks out an item
-  const handleSend = () => {
-    dispatch(deductFromQuantity(state))
-    // checkout(state.cartItems)
-    PaymentAPIClient.checkout(state.cartItems)
+  const handleCheckout = () => {
+    /*
+      ❌ TODO:
+        Dispatch DEDUCT_ITEM_QUANTITY here (lock).
+        Customer is ready to checkout, pending payment,
+        so items should be his/hers for now. 
+        Only if checkout is not a success, return all items to inventory for other customers to consume
+    */
+    dispatch(action.DeductFromQuantity())
+    PaymentAPIClient.checkout(state.cartItems, dispatch)
   }
 
   return (
@@ -37,7 +43,7 @@ function Checkout({isBrowsing}) {
       {/* Checkout API should be called in the dispatch. Dispatch should remove all items from cart first then calls Checkout API */}
       {/* <button onClick={() => checkout(state.cartItems)}>Checkout</button>  */}
 
-    <button onClick={handleSend}>Checkout</button>
+    <button onClick={handleCheckout}>Checkout</button>
     </div>
   )
 }

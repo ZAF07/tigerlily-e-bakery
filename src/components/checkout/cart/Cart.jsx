@@ -1,7 +1,9 @@
 import React, { useContext } from 'react';
 
 import { InventoryContext } from '../../../store/inventory/inventory';
-import {removeFromCart} from '../../../store/actions';
+import Actions from '../../../store/actions';
+
+const action = Actions();
 
 // DISPLAY ALL CART ITEMS HERE
 // ABILITY TO ADD OR REMOVE ITEM QUANTITY
@@ -16,7 +18,7 @@ function Cart() {
         <p>{item.price}</p>
         <small>{item.description}</small>
         <br/>
-        <button onClick={() => dispatch(removeFromCart(index))}>Remove from cart</button>
+        <button onClick={() => dispatch(action.RemoveFromCart(index))}>Remove from cart</button>
       </React.Fragment>
     )
   })

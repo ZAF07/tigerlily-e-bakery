@@ -2,7 +2,6 @@ import PaymentAPIInstance from "../../instance/PaymentAPIInstance";
 import ErrorHandlers from '../../../utils/errors/errorHandlers';
 import Constants from "../../../utils/constants";
 
-
 const PaymentAPIClient = () => {
 
   /*
@@ -11,7 +10,7 @@ const PaymentAPIClient = () => {
     To create and pass a request ID along with the payload
     Also set amount of times to retry if failure to checkout persists
   */
-  const checkout = async (a) => {
+  const checkout = async (a, dispatch) => {
   const mockData = [{
     order_id: "071292",
     sku_id: "199292",
@@ -38,6 +37,10 @@ const PaymentAPIClient = () => {
         console.debug(data.data)
 
         if (!checkoutSuccess) {
+          /*
+          ❌ TODO:
+            If payment failure persists after all retries, return all items to inventory for other customers to consume (unlock).
+          */
          console.debug("Going to retry payment. This will be an idempotent API. Don't forget to pass a requeset ID for the backend to check") 
         }
      } 

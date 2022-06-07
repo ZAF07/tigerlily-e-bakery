@@ -13,7 +13,9 @@ import IconButton from '@mui/material/IconButton';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import { InventoryContext } from '../../store/inventory/inventory';
-import {addToCart} from '../../store/actions';
+import Actions from '../../store/actions';
+
+const action = Actions();
 
 // DISPATCH addToCart function here
 //effy sucks yes
@@ -42,7 +44,7 @@ function Browse({isBrowsing}) {
                 <Typography> Quantity: {item.quantity} </Typography>
               </CardContent>
               <CardActions>
-                <IconButton aria-label="add to favorites" onClick={() => dispatch(addToCart(item))}>
+                <IconButton aria-label="add to favorites" onClick={() => dispatch(action.AddToCart(item))}>
                   <AddShoppingCartIcon/>
                  </IconButton>
                  <IconButton>

@@ -1,26 +1,37 @@
- const addToCart = (items) => {
+import Constants from "../../utils/constants"
+
+ const AddToCart = (items) => {
   return {
-    type: 'ADD_TO_CART',
+    type: Constants.actions.ADD_TO_CART,
     payload: items,
   }
 }
 
-const removeFromCart = (skuID) => {
+const RemoveFromCart = (skuID) => {
   return {
-    type: 'REMOVE_FROM_CART',
+    type: Constants.actions.REMOVE_FROM_CART,
     payload: skuID,
   }
 }
 
-const deductFromQuantity = (name) => {
+const DeductFromQuantity = (name) => {
   return {
-    type: 'DEDUCT_ITEM_QUANTITY',
+    type: Constants.actions.DEDUCT_ITEM_QUANTITY,
     payload: name
   }
 }
 
-export {
-  addToCart,
-  removeFromCart,
-  deductFromQuantity
+const Actions = () => {
+  return { 
+    AddToCart,
+    RemoveFromCart,
+    DeductFromQuantity,
+  }
 }
+
+export default Actions;
+// export {
+//   addToCart,
+//   removeFromCart,
+//   deductFromQuantity
+// }

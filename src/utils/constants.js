@@ -8,7 +8,12 @@ const Constants = {
   X_RETRY: 3,
   CHECKOUT_PATH: '/checkout',
   INVENTORY_PATH: '/inventory',
-  WS_PATH: 'ws://localhost:8080/inventory/ws?token=1234&name=zaffere'
+  WS_PATH: 'ws://localhost:8080/inventory/ws?token=1234&name=zaffere',
+  actions: {
+    ADD_TO_CART: 'ADD_TO_CART',
+    REMOVE_FROM_CART: 'REMOVE_FROM_CART',
+    DEDUCT_ITEM_QUANTITY: 'DEDUCT_ITEM_QUANTITY',
+  }
 };
 
 
