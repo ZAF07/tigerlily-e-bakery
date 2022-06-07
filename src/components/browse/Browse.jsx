@@ -14,6 +14,9 @@ import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import { InventoryContext } from '../../store/inventory/inventory';
 import InitActions from '../../store/actions';
+import egg from '../../static/images/egg_tart.jpg'
+import lemon from '../../static/images/lemon_cake.jpg'
+import cheese from '../../static/images/cheese_tart.jpg'
 
 const action = InitActions();
 
@@ -22,8 +25,28 @@ const action = InitActions();
 function Browse({isBrowsing}) {
   const browsing = isBrowsing;
   const {state, dispatch} = useContext(InventoryContext)
-//  API.syncAllInventories(dispatch)
   const pastriesDisplay = state.inventories.map((item, index) => {
+    /*
+      ❌ TODO:
+        This causes the page to load slow.
+        This is only temporary. 
+        In production, we would store all images in AWSS3 and and store image URL in DB
+    */
+    let imageURL ;
+    console.debug('IMAGE URL -> ', item.image_url)
+     switch (item.image_url) {
+      case 'egg':
+        imageURL = egg
+        break;
+      case 'lemon':
+        imageURL = lemon
+        break;
+      case 'cheese':
+        imageURL= cheese
+        break
+      default:
+        break;
+    }
     return (
       // <React.Fragment key={index + item.name}>
       <Grid item xs={6} key={index + item.name}>
@@ -33,7 +56,7 @@ function Browse({isBrowsing}) {
               <CardMedia 
               component="img"
               height="194"
-              image={item.image_url}
+              image={imageURL}
               alt="egg_tart"
               />
               <CardContent>
