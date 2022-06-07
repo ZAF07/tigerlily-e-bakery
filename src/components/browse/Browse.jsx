@@ -18,7 +18,7 @@ import egg from '../../static/images/egg_tart.jpg'
 import lemon from '../../static/images/lemon_cake.jpg'
 import cheese from '../../static/images/cheese_tart.jpg'
 
-const action = InitActions();
+const { AddToCart } = InitActions();
 
 // DISPATCH addToCart function here
 //effy sucks yes
@@ -67,7 +67,7 @@ function Browse({isBrowsing}) {
                 <Typography> Quantity: {item.quantity} </Typography>
               </CardContent>
               <CardActions>
-                <IconButton aria-label="add to favorites" onClick={() => dispatch(action.AddToCart(item))}>
+                <IconButton aria-label="add to favorites" onClick={() => dispatch(AddToCart(item))}>
                   <AddShoppingCartIcon/>
                  </IconButton>
                  <IconButton>

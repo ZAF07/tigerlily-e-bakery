@@ -5,7 +5,7 @@ import InitActions from '../../store/actions'
 
 import Cart from './cart/Cart';
 
-const action = InitActions();
+const { DeductFromQuantity } = InitActions();
 const { PaymentAPIClient } = InitAPIClient();
 
 // CHECKOUT BUTTON HERE
@@ -31,7 +31,7 @@ function Checkout({isBrowsing}) {
         so items should be his/hers for now. 
         Only if checkout is not a success, return all items to inventory for other customers to consume
     */
-    dispatch(action.DeductFromQuantity())
+    dispatch(DeductFromQuantity())
     PaymentAPIClient.checkout(state.cartItems, dispatch)
   }
 
