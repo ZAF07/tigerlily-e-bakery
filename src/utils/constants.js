@@ -12,7 +12,7 @@ const Constants = {
     WS_PATH: 'ws://localhost:8080/inventory/ws?token=1234&name=zaffere',
   },
   actions: {
-    GET_INVENTORIES: 'GET_INVENTORIES',
+    SET_INVENTORIES: 'SET_INVENTORIES',
     ADD_TO_CART: 'ADD_TO_CART',
     REMOVE_FROM_CART: 'REMOVE_FROM_CART',
     DEDUCT_ITEM_QUANTITY: 'DEDUCT_ITEM_QUANTITY',

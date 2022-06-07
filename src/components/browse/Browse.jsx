@@ -13,9 +13,9 @@ import IconButton from '@mui/material/IconButton';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import { InventoryContext } from '../../store/inventory/inventory';
-import Actions from '../../store/actions';
+import InitActions from '../../store/actions';
 
-const action = Actions();
+const action = InitActions();
 
 // DISPATCH addToCart function here
 //effy sucks yes

@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
 
 import { InventoryContext } from '../../../store/inventory/inventory';
-import Actions from '../../../store/actions';
+import InitActions from '../../../store/actions';
 
-const action = Actions();
+const action = InitActions();
 
 // DISPLAY ALL CART ITEMS HERE
 // ABILITY TO ADD OR REMOVE ITEM QUANTITY

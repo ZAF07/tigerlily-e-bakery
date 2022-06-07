@@ -1,11 +1,11 @@
 import React, {useContext} from 'react';
 import { InventoryContext } from '../../store/inventory/inventory';
 import InitAPIClient from '../../api';
-import Actions from '../../store/actions'
+import InitActions from '../../store/actions'
 
 import Cart from './cart/Cart';
 
-const action = Actions();
+const action = InitActions();
 const { PaymentAPIClient } = InitAPIClient();
 
 // CHECKOUT BUTTON HERE

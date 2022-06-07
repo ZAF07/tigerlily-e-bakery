@@ -14,7 +14,8 @@ export const reducer = (state, action) => {
       Could move all the case's logic into a helper. Can declutter the page
   */
   switch (action.type) {
-    case Constants.actions.GET_INVENTORIES:
+    // ❌ Rename to SET_INVENTORIES
+    case Constants.actions.SET_INVENTORIES:
       return {...state, inventories: action.payload}
     
     case Constants.actions.ADD_TO_CART:
@@ -25,6 +26,7 @@ export const reducer = (state, action) => {
     const currentItems = state.cartItems;
     currentItems.splice(action.payload, 1);
     return {...state, cartItems: currentItems}
+
     case Constants.actions.SET_WEBSOCKET_INSTANCE:
       return {...state, wsInstance: action.payload}
 
@@ -58,7 +60,7 @@ export const reducer = (state, action) => {
       return latestState
 
     case Constants.actions.REAL_TIME_INVENTORY_UPDATE:
-      console.log('GOTTEN IN DEDUCT_ITEM_QUANTITY REDUCER ===> ', action.payload);
+      console.debug('GOTTEN IN DEDUCT_ITEM_QUANTITY REDUCER ===> ', action.payload);
       return {...state, inventories: action.payload}
     default:
       return {...state};
