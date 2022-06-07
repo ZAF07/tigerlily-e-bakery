@@ -30,8 +30,3 @@ const Actions = () => {
 }
 
 export default Actions;
-// export {
-//   addToCart,
-//   removeFromCart,
-//   deductFromQuantity
-// }

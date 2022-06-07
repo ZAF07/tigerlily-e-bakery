@@ -21,7 +21,7 @@ const InitInventoryAPIClient = () => {
 
       try 
       {
-        const resp = await InventoryAPIInstance.get(`${Constants.INVENTORY_PATH}?${query}`, {})
+        const resp = await InventoryAPIInstance.get(`${Constants.paths.INVENTORY_PATH}?${query}`, {})
         const { data } = resp;
         const payload = data.data.inventories;
         dispatch({type: "GET_INVENTORIES", payload})
@@ -43,7 +43,7 @@ const InitInventoryAPIClient = () => {
       Set up error handling for cases when WS Client cannot establish a connection
   */ 
   const ConnectWSInventories = (dispatch) => {
-    const conn = new WebSocket(Constants.WS_PATH);
+    const conn = new WebSocket(Constants.paths.WS_PATH);
     dispatch({type: 'SET_WEBSOCKET_INSTANCE', payload: conn})
     console.debug('💡💡💡 WEBSOCKET CONNECTION SUCCEED 💡💡💡') 
 

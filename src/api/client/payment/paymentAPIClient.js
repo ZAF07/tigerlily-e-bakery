@@ -24,7 +24,7 @@ const PaymentAPIClient = () => {
       let errMsg;
       try 
       {
-        const resp = await PaymentAPIInstance.post(Constants.CHECKOUT_PATH, {
+        const resp = await PaymentAPIInstance.post(Constants.paths.CHECKOUT_PATH, {
           checkout_items: mockData,
           payment_type: paymentType,
           Headers: {
