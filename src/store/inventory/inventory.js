@@ -9,6 +9,10 @@ export const initialState = {
 };
 
 export const reducer = (state, action) => {
+  /*
+    ❌ TODO:
+      Could move all the case's logic into a helper. Can declutter the page
+  */
   switch (action.type) {
     case Constants.actions.GET_INVENTORIES:
       return {...state, inventories: action.payload}
