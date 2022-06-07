@@ -24,7 +24,7 @@ const InitInventoryAPIClient = () => {
         const resp = await InventoryAPIInstance.get(`${Constants.paths.INVENTORY_PATH}?${query}`, {})
         const { data } = resp;
         const payload = data.data.inventories;
-        dispatch({type: "GET_INVENTORIES", payload})
+        dispatch({type: Constants.actions.GET_INVENTORIES, payload})
         return 
       } 
       catch (error) {
@@ -44,7 +44,7 @@ const InitInventoryAPIClient = () => {
   */ 
   const ConnectWSInventories = (dispatch) => {
     const conn = new WebSocket(Constants.paths.WS_PATH);
-    dispatch({type: 'SET_WEBSOCKET_INSTANCE', payload: conn})
+    dispatch({type: Constants.actions.SET_WEBSOCKET_INSTANCE, payload: conn})
     console.debug('💡💡💡 WEBSOCKET CONNECTION SUCCEED 💡💡💡') 
 
     conn.onmessage = (msg) => {
@@ -52,7 +52,7 @@ const InitInventoryAPIClient = () => {
     console.debug('MESSAGE RECEIVED : ', JSON.stringify(msg.data))
     const payload = JSON.parse(msg.data).inventories
     console.debug('THIS PAYLAOD RECEIVED FROM WEBSOCKET CONNECTION : ', payload);
-    dispatch({type: "REAL_TIME_INVENTORY_UPDATE", payload})
+    dispatch({type: Constants.actions.REAL_TIME_INVENTORY_UPDATE, payload})
   }
   }
 

@@ -1,4 +1,5 @@
 import {createContext} from "react";
+import Constants from "../../utils/constants";
 
 export const initialState = {
   inventories: [],
@@ -9,18 +10,21 @@ export const initialState = {
 
 export const reducer = (state, action) => {
   switch (action.type) {
-    case "GET_INVENTORIES":
+    case Constants.actions.GET_INVENTORIES:
       return {...state, inventories: action.payload}
-    case "ADD_TO_CART":
+    
+    case Constants.actions.ADD_TO_CART:
       return {...state, cartItems: [ ...state.cartItems, action.payload]}
-    case "REMOVE_FROM_CART":
+
+    case Constants.actions.REMOVE_FROM_CART:
     // REMOVE ITEM FROM CART
     const currentItems = state.cartItems;
     currentItems.splice(action.payload, 1);
     return {...state, cartItems: currentItems}
-    case "SET_WEBSOCKET_INSTANCE":
+    case Constants.actions.SET_WEBSOCKET_INSTANCE:
       return {...state, wsInstance: action.payload}
-    case "DEDUCT_ITEM_QUANTITY":
+
+    case Constants.actions.DEDUCT_ITEM_QUANTITY:
       // GET ITEM NAME IN CART
       if (state.cartItems.length < 1) {
         return {...state}
@@ -48,6 +52,7 @@ export const reducer = (state, action) => {
       // TECH DEBT: May have to pass actual JSON instead. JSON.stringify() will not reflect nil values for objects !!!
       state.wsInstance.send(JSON.stringify({"inventories": latestState.inventories}))
       return latestState
+
     case 'REAL_TIME_INVENTORY_UPDATE':
       console.log('GOTTEN IN DEDUCT_ITEM_QUANTITY REDUCER ===> ', action.payload);
       return {...state, inventories: action.payload}
