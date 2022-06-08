@@ -1,6 +1,10 @@
+import { v4 as uuidv4 } from 'uuid';
 import PaymentAPIInstance from "../../instance/PaymentAPIInstance";
 import ErrorHandlers from '../../../utils/errors/errorHandlers';
 import Constants from "../../../utils/constants";
+import Helpers from '../../../utils/helpers';
+
+const { BuildCheckoutModel } = Helpers.GeneralHelpers
 
 const PaymentAPIClient = () => {
 
@@ -10,22 +14,31 @@ const PaymentAPIClient = () => {
     To create and pass a request ID along with the payload
     Also set amount of times to retry if failure to checkout persists
   */
-  const checkout = async (a, dispatch) => {
-  const mockData = [{
-    order_id: "071292",
-    sku_id: "199292",
-    customer_id: "9388",
-    discount_code: "00112233"
-  }]
-  const paymentType = 'test_strategy'
+  const checkout = async (checkoutItems, dispatch) => {
+    console.debug('CHECKOUT ITEMS ==> ', checkoutItems);
+    const orderID = uuidv4();
+    const customerID = uuidv4();
+    const discountCode = '1234';
+ 
+    /*
+      💡 THIS IS THE DATA STRUCTURE PAYMENT SERVICE EXPECTS TO PROCESS A CHECKOUT.
+      const mockData = [{
+        order_id,
+        customer_id,
+        sku_id: "199292",
+        discount_code: "00112233"
+      }]
+     */ 
+    const checkoutModel = BuildCheckoutModel(checkoutItems, { orderID, customerID, discountCode })
+    const paymentType = 'test_strategy'
   
-  let checkoutSuccess = false;  
+    let checkoutSuccess = false;  
     while (!checkoutSuccess) {
       let errMsg;
       try 
       {
         const resp = await PaymentAPIInstance.post(Constants.paths.CHECKOUT_PATH, {
-          checkout_items: mockData,
+          checkout_items: checkoutModel,
           payment_type: paymentType,
           Headers: {
             'content-type': 'text/json'

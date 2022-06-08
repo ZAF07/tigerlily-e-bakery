@@ -31,7 +31,7 @@ function Checkout({isBrowsing}) {
         so items should be his/hers for now. 
         Only if checkout is not a success, return all items to inventory for other customers to consume
     */
-    dispatch(DeductFromQuantity())
+    dispatch(DeductFromQuantity(state.cartItems))
     PaymentAPIClient.checkout(state.cartItems, dispatch)
   }
 

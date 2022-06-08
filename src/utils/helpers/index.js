@@ -1,8 +1,8 @@
 import APIHelper from './APIHelpers';
-import { sleep } from './generalHelpers/index';
+import GeneralHelpers from './generalHelpers/index';
 const Helpers = {
   APIHelper,
-  Sleep: sleep
+  GeneralHelpers: GeneralHelpers()
 }
 
 export default Helpers;

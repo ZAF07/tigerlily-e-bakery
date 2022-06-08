@@ -18,7 +18,8 @@ const InitInventoryAPIClient = () => {
     while (retries < maxRetries + 1) {
 
       if (retries >= 1) {
-        await Helpers.Sleep(timeToWait)
+        // await Helpers.Sleep(timeToWait)
+        await Helpers.GeneralHelpers.sleep(timeToWait)
       }
 
       try 
