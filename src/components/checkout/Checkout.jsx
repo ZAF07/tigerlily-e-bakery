@@ -43,7 +43,10 @@ function Checkout({isBrowsing}) {
       {/* Checkout API should be called in the dispatch. Dispatch should remove all items from cart first then calls Checkout API */}
       {/* <button onClick={() => checkout(state.cartItems)}>Checkout</button>  */}
 
-    <button onClick={handleCheckout}>Checkout</button>
+    {
+      state.cartItems.length >= 1 && <button onClick={handleCheckout}>Checkout</button>
+    }
+    
     </div>
   )
 }

@@ -9,7 +9,11 @@ const RemoveFromCart = (payload) => {
 }
 
 const DeductFromQuantity = (payload) => {
-  return { type: Constants.actions.DEDUCT_ITEM_QUANTITY, payload }
+  return { type: Constants.actions.CHECKOUT_UPDATE_QUANTITY, payload }
+}
+
+const DeductCurrentUserItemQuantity = (payload) => {
+  return { type: Constants.actions.DEDUCT_CURRENT_USER_ITEM_QUANTITY, payload}
 }
 
 const SetInventories = (payload) => {
@@ -20,8 +24,8 @@ const SetWebsocketInstance = (payload) => {
   return { type: Constants.actions.SET_WEBSOCKET_INSTANCE, payload}
 }
 
-const RealTimeInventoryUpdate = (payload) => {
-  return { type: Constants.actions.REAL_TIME_INVENTORY_UPDATE, payload }
+const ReceiveRealTimeInventoryUpdate = (payload) => {
+  return { type: Constants.actions.RECEIVE_REAL_TIME_INVENTORY_UPDATE, payload }
 }
 
 const InitActions = () => {
@@ -31,7 +35,8 @@ const InitActions = () => {
     DeductFromQuantity,
     SetInventories,
     SetWebsocketInstance,
-    RealTimeInventoryUpdate,    
+    ReceiveRealTimeInventoryUpdate,    
+    DeductCurrentUserItemQuantity
   }
 }
 

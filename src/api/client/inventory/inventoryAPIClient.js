@@ -18,7 +18,6 @@ const InitInventoryAPIClient = () => {
     while (retries < maxRetries + 1) {
 
       if (retries >= 1) {
-        // await Helpers.Sleep(timeToWait)
         await Helpers.GeneralHelpers.sleep(timeToWait)
       }
 
@@ -51,12 +50,12 @@ const InitInventoryAPIClient = () => {
     console.debug('💡💡💡 WEBSOCKET CONNECTION SUCCEED 💡💡💡') 
 
     conn.onmessage = (msg) => {
-    console.log('📬📬📬 Received a new message from WebSocket 📬📬📬 --> ', msg);
-    console.debug('MESSAGE RECEIVED : ', JSON.stringify(msg.data))
-    const payload = JSON.parse(msg.data).inventories
-    console.debug('THIS PAYLAOD RECEIVED FROM WEBSOCKET CONNECTION : ', payload);
-    dispatch(actions.RealTimeInventoryUpdate(payload))
-  }
+      console.log('📬📬📬 Received a new message from WebSocket 📬📬📬 --> ', msg);
+      console.debug('MESSAGE RECEIVED : ', JSON.stringify(msg.data))
+      const payload = JSON.parse(msg.data).inventories
+      console.debug('THIS PAYLAOD RECEIVED FROM WEBSOCKET CONNECTION : ', payload);
+      dispatch(actions.ReceiveRealTimeInventoryUpdate(payload))
+    }
   }
 
   return {  

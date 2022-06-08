@@ -18,7 +18,7 @@ import egg from '../../static/images/egg_tart.jpg'
 import lemon from '../../static/images/lemon_cake.jpg'
 import cheese from '../../static/images/cheese_tart.jpg'
 
-const { AddToCart } = InitActions();
+const { AddToCart, DeductCurrentUserItemQuantity } = InitActions();
 
 // DISPATCH addToCart function here
 //effy sucks yes
@@ -26,6 +26,17 @@ function Browse({isBrowsing}) {
   const browsing = isBrowsing;
   const {state, dispatch} = useContext(InventoryContext)
   const pastriesDisplay = state.inventories.map((item, index) => {
+    
+  // Before adding to cart, check that item's quantity is >1
+  const HandleAddToCart = (item) => {
+    if (item.quantity < 1) {
+      console.debug('❌❌ CANNOT ADD ITEM ❌❌')
+      return
+    } 
+    // Minus 1 to item quantity
+    dispatch(DeductCurrentUserItemQuantity(item))
+    dispatch(AddToCart(item))
+  }
     /*
       ❌ TODO:
         This causes the page to load slow.
@@ -67,7 +78,7 @@ function Browse({isBrowsing}) {
                 <Typography> Quantity: {item.quantity} </Typography>
               </CardContent>
               <CardActions>
-                <IconButton aria-label="add to favorites" onClick={() => dispatch(AddToCart(item))}>
+                <IconButton aria-label="add to cart" disabled={item.quantity <1} onClick={() => HandleAddToCart(item)}>
                   <AddShoppingCartIcon/>
                  </IconButton>
                  <IconButton>
