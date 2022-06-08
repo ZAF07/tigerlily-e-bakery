@@ -20,6 +20,10 @@ export const reducer = (state, action) => {
     case Constants.actions.ADD_TO_CART:
       return {...state, cartItems: [ ...state.cartItems, action.payload]}
     
+      /*
+        ❌ TODO: 
+          Could refactor this. Currently it scans ALL items in inventory state. What if inventory has 1000 items...
+      */
     case Constants.actions.DEDUCT_CURRENT_USER_ITEM_QUANTITY:
       console.debug('DEDUCTING FROM CURRENT USER')
       const skuToDeductQuantity = action.payload.sku_id;
