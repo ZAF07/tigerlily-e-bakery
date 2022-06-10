@@ -1,11 +1,12 @@
 import InventoryAPIInstance from '../../instance/InventoryAPIInstance';
+import InitBinaryManager from '../../../utils/managers/binaryManager';
 import appConfig from '../../../config';
 import Helpers from '../../../utils/helpers';
 import ErrorHandlers from '../../../utils/errors/errorHandlers';
 import InitActions from '../../../store/actions'
 import Constants from '../../../utils/constants';
 
-
+const { DecodeBinary } = InitBinaryManager()
 const actions = InitActions();
 const InitInventoryAPIClient = () => {
   
@@ -23,10 +24,12 @@ const InitInventoryAPIClient = () => {
 
       try 
       {
+        const start = performance.now()
         const resp = await InventoryAPIInstance.get(`${Constants.paths.INVENTORY_PATH}?${query}`, {})
         const { data } = resp;
         const payload = data.data.inventories;
         dispatch(actions.SetInventories(payload))
+        console.warn('PERFORMANCE @ INVENTORY REQ SERVER -> ', performance.now() - start)
         return 
       } 
       catch (error) {
@@ -46,15 +49,20 @@ const InitInventoryAPIClient = () => {
   */ 
   const ConnectWSInventories = (dispatch) => {
     const conn = new WebSocket(Constants.paths.WS_PATH);
+    conn.binaryType = 'arraybuffer'
     dispatch(actions.SetWebsocketInstance(conn))
     console.debug('💡💡💡 WEBSOCKET CONNECTION SUCCEED 💡💡💡') 
-
+    
     conn.onmessage = (msg) => {
+      const start = performance.now()
       console.log('📬📬📬 Received a new message from WebSocket 📬📬📬 --> ', msg);
-      console.debug('MESSAGE RECEIVED : ', JSON.stringify(msg.data))
-      const payload = JSON.parse(msg.data).inventories
-      console.debug('THIS PAYLAOD RECEIVED FROM WEBSOCKET CONNECTION : ', payload);
+      const payload = DecodeBinary(msg.data)
+      console.debug('THIS PAYLAOD RECEIVED FROM WEBSOCKET CONNECTION AFTER DECODING: ', payload);
       dispatch(actions.ReceiveRealTimeInventoryUpdate(payload))
+      console.warn('PERFORMANCE @ Updating realtime inventory updates -> ', performance.now() - start)
+      // const payload = JSON.parse(msg.data).inventories
+      // console.debug('MESSAGE RECEIVED : ', JSON.stringify(msg.data))
+      // const payload = JSON.parse(msg.data)
     }
   }
 
