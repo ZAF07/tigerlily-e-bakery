@@ -44,7 +44,7 @@ function Browse({isBrowsing}) {
         In production, we would store all images in AWSS3 and and store image URL in DB
     */
     let imageURL ;
-    console.debug('IMAGE URL -> ', item.image_url)
+    // console.debug('IMAGE URL -> ', item.image_url)
      switch (item.image_url) {
       case 'egg':
         imageURL = egg
