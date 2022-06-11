@@ -1,3 +1,4 @@
+import { deserialize } from 'bson';
 import InventoryAPIInstance from '../../instance/InventoryAPIInstance';
 import InitBinaryManager from '../../../utils/managers/binaryManager';
 import appConfig from '../../../config';
@@ -55,14 +56,12 @@ const InitInventoryAPIClient = () => {
     
     conn.onmessage = (msg) => {
       const start = performance.now()
-      console.log('📬📬📬 Received a new message from WebSocket 📬📬📬 --> ', msg);
-      const payload = DecodeBinary(msg.data)
+      console.debug('📬📬📬 Received a new message from WebSocket 📬📬📬 --> ', msg);
+      const payload = deserialize(msg.data).inventories
+      // const payload = DecodeBinary(msg.data)
       console.debug('THIS PAYLAOD RECEIVED FROM WEBSOCKET CONNECTION AFTER DECODING: ', payload);
       dispatch(actions.ReceiveRealTimeInventoryUpdate(payload))
       console.warn('PERFORMANCE @ Updating realtime inventory updates -> ', performance.now() - start)
-      // const payload = JSON.parse(msg.data).inventories
-      // console.debug('MESSAGE RECEIVED : ', JSON.stringify(msg.data))
-      // const payload = JSON.parse(msg.data)
     }
   }
 

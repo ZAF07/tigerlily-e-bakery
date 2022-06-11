@@ -1,3 +1,4 @@
+import { serialize } from 'bson';
 import InitBinaryManager from '../../utils/managers/binaryManager';
 import {createContext} from "react";
 import Constants from "../../utils/constants";
@@ -1496,210 +1497,183 @@ export const reducer = (state, action) => {
       //     quantity: 11,
       //     image_url: 'egg'
       //   }, 
-      //   // {
-      //   //   sku_id: '098766432',
-      //   //   name: 'Ehg os',
-      //   //   price: 6.2,
-      //   //   type: 'tart',
-      //   //   description: "Swee and sour",
-      //   //   quantity: 11,
-      //   //   image_url: 'egg'
-      //   // },        {
-      //   //   sku_id: '4321',
-      //   //   name: 'peaps Tart',
-      //   //   price: 6.2,
-      //   //   type: 'tart',
-      //   //   description: "Swee and sour",
-      //   //   quantity: 11,
-      //   //   image_url: 'egg'
-      //   // },        {
-      //   //   sku_id: '4455',
-      //   //   name: 'paa',
-      //   //   price: 6.2,
-      //   //   type: 'tart',
-      //   //   description: "Swee and sour",
-      //   //   quantity: 11,
-      //   //   image_url: 'egg'
-      //   // },        {
-      //   //   sku_id: '2244211',
-      //   //   name: 'o',
-      //   //   price: 6.2,
-      //   //   type: 'tart',
-      //   //   description: "Swee and sour",
-      //   //   quantity: 11,
-      //   //   image_url: 'egg'
-      //   // },        {
-      //   //   sku_id: '34',
-      //   //   name: 'i',
-      //   //   price: 6.2,
-      //   //   type: 'tart',
-      //   //   description: "Swee and sour",
-      //   //   quantity: 11,
-      //   //   image_url: 'egg'
-      //   // },        {
-      //   //   sku_id: '0009',
-      //   //   name: 'E yes',
-      //   //   price: 6.2,
-      //   //   type: 'tart',
-      //   //   description: "Swee and sour",
-      //   //   quantity: 11,
-      //   //   image_url: 'egg'
-      //   // },        {
-      //   //   sku_id: '9',
-      //   //   name: 'Eg plant',
-      //   //   price: 6.2,
-      //   //   type: 'tart',
-      //   //   description: "Swee and sour",
-      //   //   quantity: 11,
-      //   //   image_url: 'egg'
-      //   // },        {
-      //   //   sku_id: '01',
-      //   //   name: 'swet',
-      //   //   price: 6.2,
-      //   //   type: 'tart',
-      //   //   description: "Swee and sour",
-      //   //   quantity: 11,
-      //   //   image_url: 'egg'
-      //   // },        {
-      //   //   sku_id: '101123411',
-      //   //   name: 'p',
-      //   //   price: 6.2,
-      //   //   type: 'tart',
-      //   //   description: "Swee and sour",
-      //   //   quantity: 11,
-      //   //   image_url: 'egg'
-      //   // },
-      //   // {
-      //   //   sku_id: '1',
-      //   //   name: 'it',
-      //   //   price: 6.2,
-      //   //   type: 'tart',
-      //   //   description: "Swee and sour",
-      //   //   quantity: 11,
-      //   //   image_url: 'egg'
-      //   // },        {
-      //   //   sku_id: '21010911',
-      //   //   name: 'Eggplant',
-      //   //   price: 6.2,
-      //   //   type: 'tart',
-      //   //   description: "Swee and sour",
-      //   //   quantity: 11,
-      //   //   image_url: 'egg'
-      //   // },        {
-      //   //   sku_id: '755333111',
-      //   //   name: 'Yam',
-      //   //   price: 6.2,
-      //   //   type: 'tart',
-      //   //   description: "Swee and sour",
-      //   //   quantity: 11,
-      //   //   image_url: 'egg'
-      //   // },        {
-      //   //   sku_id: '411110002',
-      //   //   name: 'Strawberry',
-      //   //   price: 6.2,
-      //   //   type: 'tart',
-      //   //   description: "Swee and sour",
-      //   //   quantity: 11,
-      //   //   image_url: 'egg'
-      //   // },        {
-      //   //   sku_id: '589005511',
-      //   //   name: 'Cookies',
-      //   //   price: 6.2,
-      //   //   type: 'tart',
-      //   //   description: "Swee and sour",
-      //   //   quantity: 11,
-      //   //   image_url: 'egg'
-      //   // },        {
-      //   //   sku_id: '223211',
-      //   //   name: 'Egygrt',
-      //   //   price: 6.2,
-      //   //   type: 'tart',
-      //   //   description: "Swee and sour",
-      //   //   quantity: 11,
-      //   //   image_url: 'egg'
-      //   // },        {
-      //   //   sku_id: '22222',
-      //   //   name: 'Tart',
-      //   //   price: 6.2,
-      //   //   type: 'tart',
-      //   //   description: "Swee and sour",
-      //   //   quantity: 11,
-      //   //   image_url: 'egg'
-      //   // },        {
-      //   //   sku_id: '09199211',
-      //   //   name: 'Eat me',
-      //   //   price: 6.2,
-      //   //   type: 'tart',
-      //   //   description: "Swee and sour",
-      //   //   quantity: 11,
-      //   //   image_url: 'egg'
-      //   // },        {
-      //   //   sku_id: '129000111',
-      //   //   name: 'Omelette',
-      //   //   price: 6.2,
-      //   //   type: 'tart',
-      //   //   description: "Swee and sour",
-      //   //   quantity: 11,
-      //   //   image_url: 'egg'
-      //   // },        {
-      //   //   sku_id: '0974211',
-      //   //   name: 'Vegan Tart',
-      //   //   price: 6.2,
-      //   //   type: 'tart',
-      //   //   description: "Swee and sour",
-      //   //   quantity: 11,
-      //   //   image_url: 'egg'
-      //   // },        {
-      //   //   sku_id: '199111',
-      //   //   name: 'Peas',
-      //   //   price: 6.2,
-      //   //   type: 'tart',
-      //   //   description: "Swee and sour",
-      //   //   quantity: 11,
-      //   //   image_url: 'egg'
-      //   // },
+      //   {
+      //     sku_id: '098766432',
+      //     name: 'Ehg os',
+      //     price: 6.2,
+      //     type: 'tart',
+      //     description: "Swee and sour",
+      //     quantity: 11,
+      //     image_url: 'egg'
+      //   },        {
+      //     sku_id: '4321',
+      //     name: 'peaps Tart',
+      //     price: 6.2,
+      //     type: 'tart',
+      //     description: "Swee and sour",
+      //     quantity: 11,
+      //     image_url: 'egg'
+      //   },        {
+      //     sku_id: '4455',
+      //     name: 'paa',
+      //     price: 6.2,
+      //     type: 'tart',
+      //     description: "Swee and sour",
+      //     quantity: 11,
+      //     image_url: 'egg'
+      //   },        {
+      //     sku_id: '2244211',
+      //     name: 'o',
+      //     price: 6.2,
+      //     type: 'tart',
+      //     description: "Swee and sour",
+      //     quantity: 11,
+      //     image_url: 'egg'
+      //   },        {
+      //     sku_id: '34',
+      //     name: 'i',
+      //     price: 6.2,
+      //     type: 'tart',
+      //     description: "Swee and sour",
+      //     quantity: 11,
+      //     image_url: 'egg'
+      //   },        {
+      //     sku_id: '0009',
+      //     name: 'E yes',
+      //     price: 6.2,
+      //     type: 'tart',
+      //     description: "Swee and sour",
+      //     quantity: 11,
+      //     image_url: 'egg'
+      //   },        {
+      //     sku_id: '9',
+      //     name: 'Eg plant',
+      //     price: 6.2,
+      //     type: 'tart',
+      //     description: "Swee and sour",
+      //     quantity: 11,
+      //     image_url: 'egg'
+      //   },        {
+      //     sku_id: '01',
+      //     name: 'swet',
+      //     price: 6.2,
+      //     type: 'tart',
+      //     description: "Swee and sour",
+      //     quantity: 11,
+      //     image_url: 'egg'
+      //   },        {
+      //     sku_id: '101123411',
+      //     name: 'p',
+      //     price: 6.2,
+      //     type: 'tart',
+      //     description: "Swee and sour",
+      //     quantity: 11,
+      //     image_url: 'egg'
+      //   },
+      //   {
+      //     sku_id: '1',
+      //     name: 'it',
+      //     price: 6.2,
+      //     type: 'tart',
+      //     description: "Swee and sour",
+      //     quantity: 11,
+      //     image_url: 'egg'
+      //   },        {
+      //     sku_id: '21010911',
+      //     name: 'Eggplant',
+      //     price: 6.2,
+      //     type: 'tart',
+      //     description: "Swee and sour",
+      //     quantity: 11,
+      //     image_url: 'egg'
+      //   },        {
+      //     sku_id: '755333111',
+      //     name: 'Yam',
+      //     price: 6.2,
+      //     type: 'tart',
+      //     description: "Swee and sour",
+      //     quantity: 11,
+      //     image_url: 'egg'
+      //   },        {
+      //     sku_id: '411110002',
+      //     name: 'Strawberry',
+      //     price: 6.2,
+      //     type: 'tart',
+      //     description: "Swee and sour",
+      //     quantity: 11,
+      //     image_url: 'egg'
+      //   },        {
+      //     sku_id: '589005511',
+      //     name: 'Cookies',
+      //     price: 6.2,
+      //     type: 'tart',
+      //     description: "Swee and sour",
+      //     quantity: 11,
+      //     image_url: 'egg'
+      //   },        {
+      //     sku_id: '223211',
+      //     name: 'Egygrt',
+      //     price: 6.2,
+      //     type: 'tart',
+      //     description: "Swee and sour",
+      //     quantity: 11,
+      //     image_url: 'egg'
+      //   },        {
+      //     sku_id: '22222',
+      //     name: 'Tart',
+      //     price: 6.2,
+      //     type: 'tart',
+      //     description: "Swee and sour",
+      //     quantity: 11,
+      //     image_url: 'egg'
+      //   },        {
+      //     sku_id: '09199211',
+      //     name: 'Eat me',
+      //     price: 6.2,
+      //     type: 'tart',
+      //     description: "Swee and sour",
+      //     quantity: 11,
+      //     image_url: 'egg'
+      //   },        {
+      //     sku_id: '129000111',
+      //     name: 'Omelette',
+      //     price: 6.2,
+      //     type: 'tart',
+      //     description: "Swee and sour",
+      //     quantity: 11,
+      //     image_url: 'egg'
+      //   },        {
+      //     sku_id: '0974211',
+      //     name: 'Vegan Tart',
+      //     price: 6.2,
+      //     type: 'tart',
+      //     description: "Swee and sour",
+      //     quantity: 11,
+      //     image_url: 'egg'
+      //   },        {
+      //     sku_id: '199111',
+      //     name: 'Peas',
+      //     price: 6.2,
+      //     type: 'tart',
+      //     description: "Swee and sour",
+      //     quantity: 11,
+      //     image_url: 'egg'
+      //   },
       // ]
-      
-      // const encoded = BinaryManager.ConvertBinary(pa)
-      const encoded = BinaryManager.ConvertBinary(state.inventories)
-      console.debug("This is converted to binary => ", encoded);
-      state.wsInstance.send(encoded)
+
+      // Test data
+      // const payload = serialize({ inventories: pa});
+      const payload = serialize({ inventories: state.inventories});
+      state.wsInstance.send(payload)
 
       // 🛠 TECH DEBT: May have to pass actual JSON instead. JSON.stringify() will not reflect nil values for objects !!!
       // state.wsInstance.send(JSON.stringify({"inventories": state.inventories}))
 
-      
-      /*
-      💡 This was previous implementation when i wanted a quick prototype.
-      Uncommented (above) implementation is current and most probably the accurate one. 
-      Live Inventory state update to send is CURRENT USER'S CURRENT INVENTORY AFTER CHECKOUT
-      */ 
-     // const inCart = {};
-     // state.cartItems.forEach(obj => {
-     //   if (inCart[obj.name]) {
-     //     inCart[obj.name] += 1
-     //   } else {
-     //     inCart[obj.name] = 1
-     //   }
-     // })      
-
-      // const newState = []
-      // state.inventories.forEach(obj => {
-      //   const toUpdate = obj.name in inCart
-      //   if (toUpdate) {
-      //     obj.quantity = obj.quantity - inCart[obj.name]
-      //   }
-      //   newState.push(obj)
-      // })
-
-      // const latestState = {...state, inventories: newState}
-      // state.wsInstance.send(JSON.stringify({"inventories": latestState.inventories}))
-      // return latestState
       return { ...state, cartItems: [] }
 
     case Constants.actions.RECEIVE_REAL_TIME_INVENTORY_UPDATE:
       console.debug('GOTTEN IN RECEIVE_REAL_TIME_INVENTORY_UPDATE REDUCER ===> ', action.payload);
-      return {...state, inventories: action.payload}
+      return {...state, inventories: action.payload }
     default:
       return {...state};
   }
