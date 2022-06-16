@@ -60,7 +60,7 @@ function Browse({isBrowsing}) {
     }
     return (
       // <React.Fragment key={index + item.name}>
-      <Grid item xs={6} key={Number(item.sku_id)}>
+      <Grid item xs={6} key={(item.price + item.quantity) + item.sku_id}>
             <Card sx={{ maxWidth: 345 }}>
               <CardHeader title={item.name}>
               </CardHeader>
