@@ -1,13 +1,11 @@
 import { deserialize } from 'bson';
 import InventoryAPIInstance from '../../instance/InventoryAPIInstance';
-import InitBinaryManager from '../../../utils/managers/binaryManager';
 import appConfig from '../../../config';
 import Helpers from '../../../utils/helpers';
 import ErrorHandlers from '../../../utils/errors/errorHandlers';
 import InitActions from '../../../store/actions'
 import Constants from '../../../utils/constants';
 
-const { DecodeBinary } = InitBinaryManager()
 const actions = InitActions();
 const InitInventoryAPIClient = () => {
   
