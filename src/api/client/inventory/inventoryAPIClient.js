@@ -42,6 +42,17 @@ const InitInventoryAPIClient = () => {
     ErrorHandlers(errMsg)
   };
 
+  // Get inventories from cache
+  const GetAllInventoriesCache = async (dispatch) => {
+    const start = performance.now()
+    const resp = await InventoryAPIInstance.get(`/inventory${Constants.paths.INVENTORY_CACHE_PATH}`, {})
+       const { data } = resp;
+        const payload = data.data.inventories;
+        dispatch(actions.SetInventories(payload))
+        console.warn('PERFORMANCE @ INVENTORY REQ SERVER -> ', performance.now() - start)
+        return 
+  }
+
   /*
     ❌ TODO: 
       Set up error handling for cases when WS Client cannot establish a connection
@@ -65,6 +76,7 @@ const InitInventoryAPIClient = () => {
 
   return {  
     GetAllInventories,
+    GetAllInventoriesCache,
     ConnectWSInventories
   }
 }

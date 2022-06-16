@@ -28,7 +28,8 @@ function App() {
     }
 
     InventoryAPIClient.ConnectWSInventories(dispatch);
-    InventoryAPIClient.GetAllInventories(dispatch, '0', '0');
+    InventoryAPIClient.GetAllInventoriesCache(dispatch)
+    // InventoryAPIClient.GetAllInventories(dispatch, '0', '0');
   }, [])
 
   const CheckoutPage = state.inventories && !browsing && <Checkout isBrowsing={setBrowsing}/>

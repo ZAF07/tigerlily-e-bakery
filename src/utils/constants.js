@@ -9,6 +9,7 @@ const Constants = {
   paths: {
     CHECKOUT_PATH: '/checkout',
     INVENTORY_PATH: '/inventory',
+    INVENTORY_CACHE_PATH: "/cache",
     WS_PATH: 'ws://localhost:8080/inventory/ws?token=1234&name=zaffere',
   },
   actions: {
