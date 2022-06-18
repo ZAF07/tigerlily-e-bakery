@@ -65,6 +65,10 @@ const PaymentAPIClient = () => {
           */
          console.debug("Going to retry payment. This will be an idempotent API. Don't forget to pass a requeset ID for the backend to check") 
         }
+        /*
+        ❌  Check if i need this return statement
+        */
+        return
      } 
       catch (error) {
         errMsg = error
