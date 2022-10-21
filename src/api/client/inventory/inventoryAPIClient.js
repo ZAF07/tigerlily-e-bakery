@@ -11,6 +11,9 @@ const InitInventoryAPIClient = () => {
   
   /**GetAllInventories
    * Goes and retrieve all inventory items for the current user
+   * @param object  Dispatch method for reducer method
+   * @param string  limit amount of inventories queried
+   * @param string  offset amount of the inventories queried
    */
   const GetAllInventories = async (dispatch, limit, offset) => {
     const query = Helpers.APIHelper.BuildLimitAndOffsetString(limit, offset)
@@ -45,7 +48,9 @@ const InitInventoryAPIClient = () => {
     ErrorHandlers(errMsg)
   };
 
-  /**GetAllInventoriesCache gets inventory items from the server cache */
+  /**GetAllInventoriesCache gets inventory items from the server cache 
+   * @param object dispatch method for reducer function
+  */
   const GetAllInventoriesCache = async (dispatch) => {
     const start = performance.now()
     const resp = await InventoryAPIInstance.get(`/inventory${Constants.paths.INVENTORY_CACHE_PATH}`, {})
@@ -60,7 +65,9 @@ const InitInventoryAPIClient = () => {
     ❌ TODO: 
       Set up error handling for cases when WS Client cannot establish a connection
   */ 
- /**ConnectWSInventories establishes a WS connection with the server */
+ /**ConnectWSInventories establishes a WS connection with the server 
+  * @param dispatch - The reducer method for the global state
+ */
   const ConnectWSInventories = (dispatch) => {
     const conn = new WebSocket(Constants.paths.WS_PATH);
     conn.binaryType = 'arraybuffer'
