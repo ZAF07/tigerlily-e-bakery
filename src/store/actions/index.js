@@ -1,5 +1,7 @@
 import Constants from "../../utils/constants"
 
+// 💡 Actions only returns an object. Consists of a payload and an action type for the reducers to run their logic
+
  const AddToCart = (payload) => {
   return { type: Constants.actions.ADD_TO_CART, payload }
 }

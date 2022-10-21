@@ -9,6 +9,9 @@ import Constants from '../../../utils/constants';
 const actions = InitActions();
 const InitInventoryAPIClient = () => {
   
+  /**GetAllInventories
+   * Goes and retrieve all inventory items for the current user
+   */
   const GetAllInventories = async (dispatch, limit, offset) => {
     const query = Helpers.APIHelper.BuildLimitAndOffsetString(limit, offset)
     const { maxRetries, timeToWait } = appConfig;
@@ -42,7 +45,7 @@ const InitInventoryAPIClient = () => {
     ErrorHandlers(errMsg)
   };
 
-  // Get inventories from cache
+  /**GetAllInventoriesCache gets inventory items from the server cache */
   const GetAllInventoriesCache = async (dispatch) => {
     const start = performance.now()
     const resp = await InventoryAPIInstance.get(`/inventory${Constants.paths.INVENTORY_CACHE_PATH}`, {})
@@ -57,6 +60,7 @@ const InitInventoryAPIClient = () => {
     ❌ TODO: 
       Set up error handling for cases when WS Client cannot establish a connection
   */ 
+ /**ConnectWSInventories establishes a WS connection with the server */
   const ConnectWSInventories = (dispatch) => {
     const conn = new WebSocket(Constants.paths.WS_PATH);
     conn.binaryType = 'arraybuffer'
