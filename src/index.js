@@ -5,7 +5,6 @@ import App from './App';
 // import {InventoryContext} from './store/inventory/inventory'
 // import {reducer, initialState} from './store/inventory/inventory';
 
-// Test
 ReactDOM.render(
   // <InventoryContext.Provider value= {{reducer, initialState}}>
     <App />
